@@ -17,7 +17,7 @@
             --border-dark: #18181b;
             --font-head: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
-            --max-w: 900px;
+            --max-w: 960px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
@@ -46,14 +46,14 @@
         .btn-pdf { background: var(--border-dark); color: #ffffff; border: 1px solid var(--border-dark); padding: 0.35rem 0.8rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; }
         .btn-pdf:hover { background: var(--accent); border-color: var(--accent); }
 
-        /* Resume Container */
-        .resume-container { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.2rem; display: grid; grid-template-columns: 230px 1fr; gap: 2rem; background: #ffffff; }
+        /* Resume Container - Expanded Sidebar Grid Width */
+        .resume-container { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.2rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; background: #ffffff; }
 
         /* Sidebar Styling */
         .sidebar-block { margin-bottom: 1.5rem; }
         .sidebar-title { font-family: var(--font-head); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid var(--border-dark); padding-bottom: 0.2rem; margin-bottom: 0.6rem; }
         .contact-list { list-style: none; }
-        .contact-list li { margin-bottom: 0.4rem; color: var(--text-muted); font-size: 0.8rem; word-break: break-all; }
+        .contact-list li { margin-bottom: 0.4rem; color: var(--text-muted); font-size: 0.8rem; word-break: break-word; }
         .contact-list a { color: var(--text-main); text-decoration: none; font-weight: 500; }
         .contact-list a:hover { color: var(--accent); }
 
@@ -87,7 +87,7 @@
         /* Crisp Vector Print Rules */
         @media print {
             header, footer { display: none !important; }
-            .resume-container { max-width: 100%; padding: 0; grid-template-columns: 210px 1fr; gap: 1.2rem; }
+            .resume-container { max-width: 100%; padding: 0; grid-template-columns: 260px 1fr; gap: 1.2rem; }
             body { background: #ffffff; }
         }
 
