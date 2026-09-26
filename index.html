@@ -3,139 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishi Jani | M.Sc. Economics</title>
-    <link rel="stylesheet" href="./styles/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Rishi Jani | Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --bg-main: #ffffff;
+            --bg-sidebar: #f4f4f5;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --accent: #0284c7;
+            --border: #e4e4e7;
+            --border-dark: #18181b;
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --max-w: 900px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background: var(--bg-main); 
+            color: var(--text-main); 
+            font-family: var(--font-body); 
+            line-height: 1.45; 
+            font-size: 0.85rem; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Navigation Header */
+        header { position: sticky; top: 0; background: #ffffff; border-bottom: 2px solid var(--border-dark); z-index: 100; }
+        nav { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1.2rem; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--text-main); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* PDF Action Button */
+        .btn-pdf { background: var(--border-dark); color: #ffffff; border: 1px solid var(--border-dark); padding: 0.35rem 0.8rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s; }
+        .btn-pdf:hover { background: var(--accent); border-color: var(--accent); }
+
+        /* Resume Container */
+        .resume-container { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.2rem; display: grid; grid-template-columns: 230px 1fr; gap: 2rem; background: #ffffff; }
+
+        /* Sidebar Styling */
+        .sidebar-block { margin-bottom: 1.5rem; }
+        .sidebar-title { font-family: var(--font-head); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid var(--border-dark); padding-bottom: 0.2rem; margin-bottom: 0.6rem; }
+        .contact-list { list-style: none; }
+        .contact-list li { margin-bottom: 0.4rem; color: var(--text-muted); font-size: 0.8rem; word-break: break-all; }
+        .contact-list a { color: var(--text-main); text-decoration: none; font-weight: 500; }
+        .contact-list a:hover { color: var(--accent); }
+
+        .tag-group { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .tag { background: var(--bg-sidebar); border: 1px solid var(--border-dark); padding: 0.15rem 0.45rem; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--text-main); }
+
+        /* Main Content Styling */
+        .main-header { border-bottom: 2px solid var(--border-dark); padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
+        .main-header h1 { font-family: var(--font-head); font-size: 1.6rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.2rem; }
+        .main-header .title-sub { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .section-header { font-family: var(--font-head); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--border-dark); padding-bottom: 0.2rem; margin-bottom: 1rem; }
+        .resume-section { margin-bottom: 1.8rem; }
+
+        /* Entries */
+        .entry { margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+        .entry:last-child { border-bottom: none; padding-bottom: 0; }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.1rem; }
+        .entry-title { font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
+        .entry-date { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+        .entry-sub { font-weight: 600; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.4rem; }
+        
+        .entry-bullets { list-style-position: inside; color: var(--text-muted); font-size: 0.82rem; }
+        .entry-bullets li { margin-bottom: 0.25rem; }
+
+        .summary-text { color: var(--text-muted); font-size: 0.83rem; line-height: 1.5; }
+
+        /* Footer */
+        footer { border-top: 2px solid var(--border-dark); text-align: center; padding: 1.2rem; font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+        /* Crisp Vector Print Rules */
+        @media print {
+            header, footer { display: none !important; }
+            .resume-container { max-width: 100%; padding: 0; grid-template-columns: 210px 1fr; gap: 1.2rem; }
+            body { background: #ffffff; }
+        }
+
+        @media (max-width: 768px) {
+            .resume-container { grid-template-columns: 1fr; gap: 1.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-    <header id="navbar">
+    <header>
         <nav>
-            <a href="#hero" class="logo">RJ</a>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
+            <a href="#" class="logo">Rishi Jani</a>
+            <ul class="nav-links">
+                <li><a href="#about">Summary</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#cta">Contact</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><button class="btn-pdf" onclick="downloadPDF()">Download PDF</button></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="full-screen-section fade-in-hidden">
-            <div class="hero-content">
-                <h1 data-animate-delay="200">Rishi Jani</h1>
-                <h2 data-animate-delay="400">M.Sc. Economics | BITS Pilani</h2>
-                <p data-animate-delay="600">Economics student passionate in Finance, statistical analysis, and understanding the dynamics of markets and policy.</p>
-                <a href="#education" class="button primary" data-animate-delay="800">View Resume</a>
+    <div class="resume-container" id="resumeContent">
+        
+        <!-- Sidebar -->
+        <aside>
+            <div class="sidebar-block">
+                <div class="sidebar-title">Contact</div>
+                <ul class="contact-list">
+                    <li>Email: <br><a href="mailto:f20250371@hyderabad.bits-pilani.ac.in">f20250371@hyderabad.bits-pilani.ac.in</a></li>
+                    <li>Institute: <br><strong>BITS Pilani</strong></li>
+                    <li>Status: <br>Open for Roles / Research</li>
+                </ul>
             </div>
-        </section>
 
-        <!-- About Section -->
-        <section id="about" class="content-section fade-in-hidden">
-            <div class="container">
-                <h3 data-animate-delay="100">About Me</h3>
-                <p class="subtitle data-animate-delay="200">A curious mind driven by data and discovery.</p>
-                <div class="text-block" data-animate-delay="400">
-                    <p>I am a dedicated M.Sc. Economics student at BITS Pilani, pursuing advanced studies in econometrics and theoretical economics with a focus on empirical analysis. My academic journey blends rigorous analytical training with practical problem-solving skills.</p>
-                    <p>I am especially interested in causal inference, machine learning applications in economics, and policy evaluation. Through research projects and coursework, I have developed strong proficiency in statistical modeling and data visualization.</p>
+            <div class="sidebar-block" id="skills">
+                <div class="sidebar-title">Analytics & Tools</div>
+                <div class="tag-group">
+                    <span class="tag">R</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">STATA</span>
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">Jamovi</span>
+                    <span class="tag">LaTeX</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Education Section -->
-        <section id="education" class="content-section bg-light fade-in-hidden">
-            <div class="container">
-                <h3 data-animate-delay="100">Education</h3>
-
-                <div class="product-grid" data-animate-delay="300">
-                    <article class="product-card fade-in-hidden">
-                        <h4>M.Sc. in Economics</h4>
-                        <p class="material">Birla Institute of Technology and Science, Pilani</p>
-                        <p>2026 — 2030</p>
-                    </article>
-                    <article class="product-card fade-in-hidden">
-                        <h4>B.E. in Computer Science</h4>
-                        <p class="material">BITS Pilani</p>
-                        <p>2026 — 2030</p>
-                    </article>
+            <div class="sidebar-block">
+                <div class="sidebar-title">Methodologies</div>
+                <div class="tag-group">
+                    <span class="tag">Econometrics</span>
+                    <span class="tag">Regression Analysis</span>
+                    <span class="tag">Time Series</span>
+                    <span class="tag">Causal Inference</span>
+                    <span class="tag">A/B Testing</span>
+                    <span class="tag">Pandas / NumPy</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="content-section fade-in-hidden">
-            <div class="container experience-layout">
-                <h3 style="text-align: left;" data-animate-delay="100">Experience</h3>
-                <div style="display: flex; gap: 2rem;">
-                    <article class="product-card fade-in-hidden" style="width: 100%;">
-                        <h4>Data Analyst Intern</h4>
-                        <p class="material">Example Solutions</p>
-                        <div style="margin-top: 0.8em; text-align: left;">
-                            <p><strong>2025</strong></p>
-                            <ul style="padding-left: 1.4em; margin-top: 0.3em;">
-                                <li>Performed exploratory data analysis on 50k+ records using Python (Pandas, NumPy).</li>
-                                <li>Built regression models to forecast quarterly sales trends with 87% accuracy.</li>
-                                <li>Collaborated with product team to optimize A/B testing frameworks.</li>
-                            </ul>
-                        </div>
-                    </article>
+            <div class="sidebar-block">
+                <div class="sidebar-title">Programming</div>
+                <div class="tag-group">
+                    <span class="tag">C</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Data Structures</span>
+                    <span class="tag">Web Technologies</span>
                 </div>
             </div>
-        </section>
+        </aside>
 
-        <!-- Skills Section -->
-        <section id="skills" class="content-section bg-light fade-in-hidden">
-            <div class="container skills-layout">
-                <h3 data-animate-delay="100">Skills</h3>
-                <div style="display: flex; gap: 2rem;">
-                    <article class="product-card fade-in-hidden" style="flex: 1; min-width: 200px;">
-                        <h4>Statistical Software</h4>
-                        <p>R, Python (Scikit-learn), STATA, LaTeX, Jamovi, </p>
-                    </article>
-                    <article class="product-card fade-in-hidden" style="flex: 1; min-width: 200px;">
-                        <h4>Data Analysis</h4>
-                        <p>Regression Modeling, Time Series, Causal Inference, Pandas/NumPy</p>
-                    </article>
-                    <article class="product-card fade-in-hidden" style="flex: 1; min-width: 200px;">
-                        <h4>Programming</h4>
-                        <p>C, C++, Python, Java, Web Development, DSA</p>
-                    </article>
+        <!-- Main Column -->
+        <main>
+            <section class="main-header">
+                <h1>Rishi Jani</h1>
+                <div class="title-sub">M.Sc. Economics & B.E. Computer Science Candidate</div>
+            </section>
+
+            <section class="resume-section" id="about">
+                <div class="section-header">Professional Profile</div>
+                <p class="summary-text">
+                    Dedicated Economics and Computer Science dual-degree student at BITS Pilani with analytical training across econometrics, theoretical economics, empirical data modeling, and machine learning. Focused on causal inference, policy evaluation, and financial forecasting with strong technical execution.
+                </p>
+            </section>
+
+            <section class="resume-section" id="experience">
+                <div class="section-header">Work Experience</div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Data Analyst Intern</span>
+                        <span class="entry-date">2025</span>
+                    </div>
+                    <div class="entry-sub">Example Solutions</div>
+                    <ul class="entry-bullets">
+                        <li>Executed exploratory data analysis on 50,000+ structured records using Python (Pandas, NumPy).</li>
+                        <li>Built predictive linear and multi-variable regression models to forecast quarterly sales trends with 87% accuracy.</li>
+                        <li>Collaborated with product leadership to evaluate and optimize internal A/B testing methodologies.</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Selected Projects -->
-        <section id="projects" class="content-section fade-in-hidden">
-            <div class="container projects-layout">
-                <h3 data-animate-delay="100">Selected Research & Projects</h3>
-                <div class="product-grid" data-animate-delay="300">
-                    <article class="product-card fade-in-hidden">
-                        <h4>Econometric Analysis of Inflation</h4>
-                        <p class="material">Applied ML techniques to predict urban inflation</p>
-                    </article>
+            <section class="resume-section" id="education">
+                <div class="section-header">Education</div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">M.Sc. in Economics</span>
+                        <span class="entry-date">2026 — 2030</span>
+                    </div>
+                    <div class="entry-sub">Birla Institute of Technology and Science, Pilani</div>
+                    <p class="summary-text">Advanced coursework in Econometrics, Microeconomics, Macroeconomics, Empirical Analysis, and Financial Modeling.</p>
                 </div>
-            </div>
-        </section>
 
-    </main>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">B.E. in Computer Science</span>
+                        <span class="entry-date">2026 — 2030</span>
+                    </div>
+                    <div class="entry-sub">Birla Institute of Technology and Science, Pilani</div>
+                    <p class="summary-text">Core focus on Algorithms, Data Structures, Machine Learning, Database Management, and Object-Oriented Programming.</p>
+                </div>
+            </section>
 
-    <footer id="cta" class="full-screen-section fade-in-hidden footer">
-        <div class="container">
-            <h2 data-animate-delay="100">Let's Connect</h2>
-            <p data-animate-delay="300">Open to research opportunities and collaborations.</p>
-            <a href="mailto:f20250371@hyderabad.bits-pilani.ac.in" class="button secondary" style="margin: 2em auto; display: block;" data-animate-delay="500">Get in Touch</a>
-        </div>
-    </footer>
+            <section class="resume-section" id="projects">
+                <div class="section-header">Research & Projects</div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Econometric Analysis of Urban Inflation</span>
+                        <span class="entry-date">Empirical Project</span>
+                    </div>
+                    <p class="summary-text" style="margin-top: 0.2rem;">
+                        Applied machine learning techniques alongside classic time-series econometric models to evaluate macro-level variables and predict urban inflation dynamics.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <footer>
-        2026 Rishi Jani | BITS Pilani — M.Sc. Economics
+        &copy; 2026 Rishi Jani • Web Resume Format
     </footer>
 
-    <script src="./scripts/main.js"></script>
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('resumeContent');
+            
+            // Ultra High Definition Config (400 DPI scale)
+            const opt = {
+                margin:       [0.2, 0.2, 0.2, 0.2],
+                filename:     'Rishi_Jani_Resume.pdf',
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { 
+                    scale: 4, 
+                    useCORS: true, 
+                    logging: false,
+                    letterRendering: true
+                },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait', compress: true }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
 </body>
 </html>
