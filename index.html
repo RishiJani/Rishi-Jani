@@ -60,6 +60,10 @@
         .tag-group { display: flex; flex-wrap: wrap; gap: 0.3rem; }
         .tag { background: var(--bg-sidebar); border: 1px solid var(--border-dark); padding: 0.15rem 0.45rem; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--text-main); }
 
+        /* Rating Badge Styling */
+        .rating-badge { display: inline-block; background: var(--bg-sidebar); border: 1px solid var(--border-dark); padding: 0.3rem 0.6rem; font-weight: 700; font-size: 0.8rem; }
+        .rating-badge span { color: var(--accent); }
+
         /* Main Content Styling */
         .main-header { border-bottom: 2px solid var(--border-dark); padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
         .main-header h1 { font-family: var(--font-head); font-size: 1.6rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.2rem; }
@@ -160,6 +164,20 @@
                     <span class="tag">Data Structures</span>
                     <span class="tag">Web Technologies</span>
                 </div>
+            </div>
+
+            <!-- Competitive Programming / Codeforces Section -->
+            <div class="sidebar-block">
+                <div class="sidebar-title">Competitive Coding</div>
+                <ul class="contact-list">
+                    <li>Platform: <br><strong>Codeforces</strong></li>
+                    <li>Max Rating: <br>
+                        <div class="rating-badge" style="margin-top: 0.2rem;">
+                            <span>637</span> (newbie)
+                        </div>
+                    </li>
+                    <li style="margin-top: 0.4rem;">Handle: <br><a href="https://codeforces.com/profile/Rishi_Jani" target="_blank">Rishi_Jani</a></li>
+                </ul>
             </div>
         </aside>
 
